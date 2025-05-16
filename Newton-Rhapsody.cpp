@@ -4,8 +4,7 @@
 using namespace std;
 
 double fun(double x){
-    return (log(x) + x - 3);
-    //return (pow(2,x) - log(x+4) - pow(x,4) + 8);
+       return (x * x * x - 3 * x * x + 1); // La función está correctamente definida
 }
 
 int main(){
@@ -15,12 +14,13 @@ int main(){
     cout << "Ingrese el error maximo aceptado: "; cin >> emax;
 
     do{
-        df = (fun(x0 + 0.0001) - fun(x0)) / 0.0001;
-        x1 = x0 - (fun(x0) / df);
-        error = fabs(x1 - x0);
-        x0 = x1;
-        contador += 1;
-    }while (error > emax && contador <= 30);
+        df = (fun(x0 + 0.0001) - fun(x0)) / 0.0001; 
+        x1 = x0 - (fun(x0) / df);  
+        error = fabs(x1 - x0);  
+        x0 = x1; 
+        contador += 1;  
+        cout << "Iteracion " << contador << ": x1 = " << x1 << ", error = " << error << endl;  // Mostrar iteración
+    }while (error > emax && contador <= 30);  
 
     if (contador <= 30){
         cout << endl << "---> La raiz aproximada es:  " << x1 << endl;
